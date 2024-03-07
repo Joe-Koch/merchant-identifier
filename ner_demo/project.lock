@@ -1,0 +1,80 @@
+convert:
+  cmd: python -m weasel run convert
+  script:
+    - python scripts/convert.py en assets/train.json corpus/train.spacy
+    - python scripts/convert.py en assets/dev.json corpus/dev.spacy
+  deps:
+    - path: assets/train.json
+      md5: 5aef985b36ab55da02fe9b06ed25a73f
+    - path: assets/dev.json
+      md5: d92d6acbdbaacd11f748413cb2abbd9c
+    - path: scripts/convert.py
+      md5: 26a5ca230fbbafa8c01c5c85c46bea74
+  outs:
+    - path: corpus/train.spacy
+      md5: 568d40b80e6fe899f1562e200b0f2f28
+    - path: corpus/dev.spacy
+      md5: 75dfd329dd0e6d85e51fc381af37cba9
+create-config:
+  cmd: python -m weasel run create-config
+  script:
+    - python -m spacy init config --lang en --pipeline ner configs/config.cfg --force
+  deps: []
+  outs:
+    - path: configs/config.cfg
+      md5: 3ca2ff69140c79dc2db551a1bc2e3b8a
+train:
+  cmd: python -m weasel run train
+  script:
+    - python -m spacy train configs/config.cfg --output training/ --paths.init_tok2vec
+      pretraining/model-last.bin --paths.train corpus/train.spacy --paths.dev corpus/dev.spacy
+      --training.eval_frequency 10 --training.patience 50 --gpu-id -1
+  deps:
+    - path: configs/config.cfg
+      md5: 302d1fb1401a891978872832d51b0916
+    - path: corpus/train.spacy
+      md5: 568d40b80e6fe899f1562e200b0f2f28
+    - path: corpus/dev.spacy
+      md5: 75dfd329dd0e6d85e51fc381af37cba9
+    - path: pretraining/model-last.bin
+      md5: d94117cdd8b4da78bac54b07a7518665
+  outs:
+    - path: training/model-best
+      md5: c0b6125a7d88b00b0f3833e1e74479a5
+evaluate:
+  cmd: python -m weasel run evaluate
+  script:
+    - python -m spacy evaluate training/model-best corpus/dev.spacy --output training/metrics.json
+  deps:
+    - path: corpus/dev.spacy
+      md5: 75dfd329dd0e6d85e51fc381af37cba9
+    - path: training/model-best
+      md5: 86258b2f334756e6aafce2e5b5cd5ede
+  outs:
+    - path: training/metrics.json
+      md5: d03580884fce1fc5a64e80da1efb1f74
+convert-pretraining:
+  cmd: python -m weasel run convert-pretraining
+  script:
+    - python scripts/convert_pretraining.py data/10_random.csv corpus/pretrain.jsonl
+  deps:
+    - path: data/10_random.csv
+      md5: 2c75ab4fc086acaecccd2d23d1b99a2e
+    - path: scripts/convert_pretraining.py
+      md5: 7272fb955c36b1476f4d3d93f92b0f9b
+  outs:
+    - path: corpus/pretrain.jsonl
+      md5: 4ef799df7fe1fb1fd701d8d7fbefbb2b
+pretrain:
+  cmd: python -m weasel run pretrain
+  script:
+    - python -m spacy pretrain configs/config.cfg ./pretraining/ --paths.pretrain
+      corpus/pretrain.jsonl
+  deps:
+    - path: corpus/pretrain.jsonl
+      md5: 4ef799df7fe1fb1fd701d8d7fbefbb2b
+    - path: configs/config.cfg
+      md5: 302d1fb1401a891978872832d51b0916
+  outs:
+    - path: pretraining/model-best
+      md5: null

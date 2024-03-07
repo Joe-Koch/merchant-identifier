@@ -6,15 +6,17 @@ vars:
   lang: "en"
   train: "train.json"
   dev: "dev.json"
+  # pretrain: "10mil_random.csv"
+  pretrain: "10_random.csv"
   version: "0.0.0"
   # Set your GPU ID, -1 is CPU
   gpu_id: -1
   # Vectors model for train-with-vectors
-  vectors_model: "en_core_web_md"
+  vectors_model: "en_core_web_sm"
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
-directories: ["assets", "corpus", "configs", "training", "scripts", "packages"]
+directories: ["data", "assets", "corpus", "configs", "training", "scripts", "packages"]
 
 # Assets that should be downloaded or available in the directory. We're shipping
 # them with the project, so they won't have to be downloaded.
@@ -30,7 +32,9 @@ assets:
 workflows:
   all:
     - convert
-    - create-config
+    - convert-pretraining
+    # - create-config
+    - pretrain
     - train
     # - train-with-vectors
     - evaluate
@@ -58,6 +62,26 @@ commands:
       - "corpus/train.spacy"
       - "corpus/dev.spacy"
 
+  - name: "convert-pretraining"
+    help: "Convert the raw data to pretraining data"
+    script:
+      - "python scripts/convert_pretraining.py data/${vars.pretrain} corpus/pretrain.jsonl"
+    deps:
+      - "data/${vars.pretrain}"
+      - "scripts/convert_pretraining.py"
+    outputs:
+      - "corpus/pretrain.jsonl"
+
+  - name: "pretrain"
+    help: "Pre-train the model with pretraining data"
+    script:
+      - "python -m spacy pretrain configs/config.cfg ./pretraining/ --paths.pretrain corpus/pretrain.jsonl"
+    deps:
+      - "corpus/pretrain.jsonl"
+      - "configs/config.cfg"
+    outputs:
+      - "pretraining/model-last.bin"
+
   - name: "create-config"
     help: "Create a new config with an NER pipeline component"
     script:
@@ -67,11 +91,12 @@ commands:
   - name: "train"
     help: "Train the NER model"
     script:
-      - "python -m spacy train configs/config.cfg --output training/ --paths.train corpus/train.spacy --paths.dev corpus/dev.spacy --training.eval_frequency 10 --training.patience 50 --gpu-id ${vars.gpu_id}"
+      - "python -m spacy train configs/config.cfg --output training/ --paths.init_tok2vec pretraining/model-last.bin --paths.train corpus/train.spacy --paths.dev corpus/dev.spacy --training.eval_frequency 10 --training.patience 50 --gpu-id ${vars.gpu_id}"
     deps:
       - "configs/config.cfg"
       - "corpus/train.spacy"
       - "corpus/dev.spacy"
+      - "pretraining/model-last.bin"
     outputs:
       - "training/model-best"
 
