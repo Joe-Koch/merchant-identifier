@@ -6,8 +6,12 @@ vars:
   lang: "en"
   train: "train.json"
   dev: "dev.json"
+  # 10 obs. used for initial development
+  # pretrain: "10_random.csv"
+  # Lol, nope, 10mil was way too big, would've taken too long to run
   # pretrain: "10mil_random.csv"
-  pretrain: "10_random.csv"
+  # Goldilocks size: 100k
+  pretrain: "100thou_random.csv"
   version: "0.0.0"
   # Set your GPU ID, -1 is CPU
   gpu_id: -1
