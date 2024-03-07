@@ -1,0 +1,3 @@
+{"label": "ORG", "pattern": "OpenAI"}
+{"label": "GPE", "pattern": [{"LOWER": "san"}, {"LOWER": "francisco"}]}
+{"label": "ORG", "pattern": "Apple", "id": "apple"}

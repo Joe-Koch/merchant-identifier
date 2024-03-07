@@ -75,7 +75,7 @@ commands:
   - name: "pretrain"
     help: "Pre-train the model with pretraining data"
     script:
-      - "python -m spacy pretrain configs/config.cfg ./pretraining/ --paths.pretrain corpus/pretrain.jsonl"
+      - "python -m spacy pretrain configs/config.cfg ./pretraining/ --paths.pretrain corpus/pretrain.jsonl --paths.entity_rules patterns/entity_rules.jsonl"
     deps:
       - "corpus/pretrain.jsonl"
       - "configs/config.cfg"
@@ -91,12 +91,13 @@ commands:
   - name: "train"
     help: "Train the NER model"
     script:
-      - "python -m spacy train configs/config.cfg --output training/ --paths.init_tok2vec pretraining/model-last.bin --paths.train corpus/train.spacy --paths.dev corpus/dev.spacy --training.eval_frequency 10 --training.patience 50 --gpu-id ${vars.gpu_id}"
+      - "python -m spacy train configs/config.cfg --output training/ --paths.init_tok2vec pretraining/model-last.bin --paths.train corpus/train.spacy --paths.dev corpus/dev.spacy --paths.entity_rules patterns/entity_rules.jsonl --training.eval_frequency 10 --training.patience 50 --gpu-id ${vars.gpu_id}"
     deps:
       - "configs/config.cfg"
       - "corpus/train.spacy"
       - "corpus/dev.spacy"
       - "pretraining/model-last.bin"
+      - "patterns/entity_rules.jsonl"
     outputs:
       - "training/model-best"
 
