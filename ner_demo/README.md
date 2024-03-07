@@ -20,6 +20,8 @@ Commands are only re-run if their inputs have changed.
 | --- | --- |
 | `download` | Download a spaCy model with pretrained vectors |
 | `convert` | Convert the data to spaCy's binary format |
+| `convert-pretraining` | Convert the raw data to pretraining data |
+| `pretrain` | Pre-train the model with pretraining data |
 | `create-config` | Create a new config with an NER pipeline component |
 | `train` | Train the NER model |
 | `train-with-vectors` | Train the NER model with vectors |
@@ -36,7 +38,7 @@ inputs have changed.
 
 | Workflow | Steps |
 | --- | --- |
-| `all` | `convert` &rarr; `create-config` &rarr; `train` &rarr; `evaluate` |
+| `all` | `convert` &rarr; `convert-pretraining` &rarr; `pretrain` &rarr; `train` &rarr; `evaluate` |
 
 ### 🗂 Assets
 
