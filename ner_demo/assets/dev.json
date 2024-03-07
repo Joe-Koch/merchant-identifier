@@ -1,24 +1,101 @@
 [
   [
-    "Where is Berlin?",
+    "LULULEMON MARKET ST",
     {
-      "entities":[
+      "entities": [
         [
+          0,
           9,
-          15,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "PACSUN #0229",
+    {
+      "entities": [
+        [
+          0,
+          6,
+          "ORG"
+        ],
+        [
+          7,
+          8,
           "LOC"
         ]
       ]
     }
   ],
   [
-    "I like Shaka Khan.",
+    "ANTHROPOLOGIE #533",
     {
-      "entities":[
+      "entities": [
         [
-          7,
-          17,
-          "PERSON"
+          0,
+          13,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "PUBLIX #1716",
+    {
+      "entities": [
+        [
+          0,
+          6,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "SEPHORA CROCKER PARK",
+    {
+      "entities": [
+        [
+          0,
+          15,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "NORDSTROM #0345",
+    {
+      "entities": [
+        [
+          0,
+          9,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "ULTA #1121",
+    {
+      "entities": [
+        [
+          0,
+          4,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "WALGREENS #5729",
+    {
+      "entities": [
+        [
+          0,
+          9,
+          "ORG"
         ]
       ]
     }

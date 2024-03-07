@@ -1,29 +1,120 @@
 [
   [
-    "Who is Shaka Khan?",
+    "WALGREENS #4989",
     {
-      "entities":[
+      "entities": [
         [
-          7,
-          17,
-          "PERSON"
+          0,
+          9,
+          "ORG"
         ]
       ]
     }
   ],
   [
-    "I like London and Berlin.",
+    "DILLARDS 229 MARKET ST",
     {
-      "entities":[
+      "entities": [
         [
+          0,
+          8,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "CHEVRON 0376278",
+    {
+      "entities": [
+        [
+          0,
           7,
-          13,
-          "LOC"
-        ],
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "ULTA 1265",
+    {
+      "entities": [
         [
-          18,
-          24,
+          0,
+          4,
           "LOC"
+        ]
+      ]
+    }
+  ],
+  [
+    "FINISH LINE #1030",
+    {
+      "entities": [
+        [
+          0,
+          11,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "ULTA #376",
+    {
+      "entities": [
+        [
+          0,
+          4,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "ULTA #798",
+    {
+      "entities": [
+        [
+          0,
+          4,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "TARGET        00008243",
+    {
+      "entities": [
+        [
+          0,
+          6,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "NORDSTROM #0360",
+    {
+      "entities": [
+        [
+          0,
+          9,
+          "ORG"
+        ]
+      ]
+    }
+  ],
+  [
+    "STARBUCKS 800-782-7282",
+    {
+      "entities": [
+        [
+          0,
+          13,
+          "ORG"
         ]
       ]
     }

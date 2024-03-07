@@ -1,3 +1,15 @@
-{"label": "ORG", "pattern": "OpenAI"}
-{"label": "GPE", "pattern": [{"LOWER": "san"}, {"LOWER": "francisco"}]}
-{"label": "ORG", "pattern": "Apple", "id": "apple"}
+{"label": "ORG", "pattern": [{"LOWER": "pacsun"}], "id": "pacsun"}
+{"label": "ORG", "pattern": [{"LOWER": "PUBLIX"}], "id": "publix"}
+{"label": "ORG", "pattern": [{"LOWER": "SEPHORA"}], "id": "sephora"}
+{"label": "ORG", "pattern": [{"LOWER": "PETSMART"}], "id": "petsmart"}
+{"label": "ORG", "pattern": [{"LOWER": "DILLARDS"}], "id": "DILLARDS"}
+{"label": "ORG", "pattern": [{"LOWER": "OLD"}, {"LOWER": "NAVY"}], "id": "OLD NAVY"}
+{"label": "ORG", "pattern": [{"LOWER": "OLIVE"}, {"LOWER": "GARDEN"}], "id": "OLIVE GARDEN"}
+{"label": "ORG", "pattern": [{"LOWER": "SUNOCO"}], "id": "SUNOCO"}
+{"label": "ORG", "pattern": [{"LOWER": "Subway"}], "id": "Subway"}
+{"label": "ORG", "pattern": [{"LOWER": "FOOT"}, {"LOWER": "LOCKER"}], "id": "FOOT LOCKER"}
+{"label": "ORG", "pattern": [{"LOWER": "MACYS"}], "id": "MACYS"}
+{"label": "ORG", "pattern": [{"LOWER": "NORDSTROM"}], "id": "NORDSTROM"}
+{"label": "ORG", "pattern": [{"LOWER": "STARBUCKS"}], "id": "STARBUCKS"}
+{"label": "ORG", "pattern": [{"LOWER": "KROGER"}], "id": "KROGER"}
+{"label": "ORG", "pattern": [{"LOWER": "SPEEDWAY"}], "id": "SPEEDWAY"}
